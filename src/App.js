@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route , Navigate } from "react-router-dom";
 
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -10,6 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route>
+          <Route path="/" element={<Navigate to="/login"/>}/>
           <Route path="/login" element={<Login />} />
           <Route
             path="/change-phone-number"

@@ -23,13 +23,13 @@ export default function Dialog({ buttonMenu, onSuccess }) {
   const onFinish = async (values) => {
     try {
       setIsLoading(true);
-      const phoneNumberFormat = toPhoneNumberWith84(values.phoneNumber);
-      await getOTP(phoneNumberFormat);
-      setNewPhoneNumber(phoneNumberFormat);
+      await getOTP(values.phoneNumber);
+      setNewPhoneNumber(values.phoneNumber);
       setOption(INPUT_OTP);
       onSuccess();
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
+      message.error(err.message, 3);
     } finally {
       setIsLoading(false);
     }
@@ -51,7 +51,7 @@ export default function Dialog({ buttonMenu, onSuccess }) {
       onSuccess();
     } catch (err) {
       console.log(err);
-      message.error("OTP in correct", 3);
+      message.error(err.message, 3);
     } finally {
       setIsLoading(false);
     }
@@ -127,7 +127,7 @@ export default function Dialog({ buttonMenu, onSuccess }) {
                 },
               ]}
             >
-              <Input addonBefore="+84" onKeyPress={forceTextInputEnterNumber} />
+              <Input />
             </Form.Item>
           </Form>
         ) : (

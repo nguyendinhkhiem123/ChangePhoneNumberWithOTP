@@ -16,7 +16,7 @@ export default function ChangeNumberPhone() {
   const getPhoneNumber = async () => {
     try {
       const result = await getPhoneNumberOfMember();
-      setCurrentPhoneNumber(toPhoneNumberWithout84(result.data));
+      setCurrentPhoneNumber(result.data);
     } catch (err) {
       console.log(err);
     }
@@ -31,7 +31,7 @@ export default function ChangeNumberPhone() {
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
           >
-            <Input addonBefore="+84" value={currentPhoneNumber} />
+            <Input value={currentPhoneNumber} />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: 20 }}>
             <Dialog
